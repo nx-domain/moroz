@@ -23,7 +23,7 @@
 								<key>EventDetailText</key>
 								<string>Open sync server</string>
 								<key>EventDetailURL</key>
-                <string>https://santa:8080/blockables/%file_sha%</string>
+                                <string>https://santa:8080/blockables/%file_sha%</string>
 								<key>FileChangesRegex</key>
 								<string>^/(?!(?:private/tmp|Library/(?:Caches|Managed Installs/Logs|(?:Managed )?Preferences))/)</string>
 								<key>MachineIDKey</key>
@@ -41,7 +41,7 @@
 								<key>MoreInfoURL</key>
 								<string>https://santa:8080/moreinfo</string>
 								<key>SyncBaseURL</key>
-                <string>https://santa:8080/v1/santa/</string>
+                                <string>https://santa:8080/v1/santa/</string>
 								<key>UnknownBlockMessage</key>
 								<string>This application has been blocked from executing.</string>
 							</dict>
