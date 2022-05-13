@@ -9,7 +9,7 @@ import (
 	"sync"
 
 	"github.com/BurntSushi/toml"
-	"github.com/groob/moroz/santa"
+	"github.com/clinia/moroz/santa"
 	"github.com/pkg/errors"
 )
 

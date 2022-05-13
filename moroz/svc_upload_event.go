@@ -14,7 +14,7 @@ import (
 	"github.com/go-kit/kit/endpoint"
 	"github.com/pkg/errors"
 
-	"github.com/groob/moroz/santa"
+	"github.com/clinia/moroz/santa"
 )
 
 func (svc *SantaService) UploadEvent(ctx context.Context, machineID string, events []santa.EventPayload) error {

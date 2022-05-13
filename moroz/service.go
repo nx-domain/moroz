@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
+	"github.com/clinia/moroz/santa"
 	"github.com/go-kit/kit/endpoint"
-	"github.com/groob/moroz/santa"
 )
 
 type ConfigStore interface {

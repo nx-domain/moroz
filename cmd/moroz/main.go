@@ -17,28 +17,9 @@ import (
 	"github.com/kolide/kit/version"
 	"github.com/oklog/run"
 
-	"github.com/groob/moroz/moroz"
-	"github.com/groob/moroz/santaconfig"
+	"github.com/clinia/moroz/moroz"
+	"github.com/clinia/moroz/santaconfig"
 )
-
-const openSSLBash = `
-Looks like you're missing a TLS certificate and private key. You can quickly generate one 
-by using the commands below:
-
-	./tools/dev/certificate/create
-
-Add the santa hostname to your hosts file.
-
-	sudo echo "127.0.0.1 santa" >> /etc/hosts
-
-And then, add the cert to roots.
-
-	./tools/dev/certificate/add-trusted-cert
-
-
-The latest version of santa is available on the github repo page:
-	https://github.com/google/santa/releases
-`
 
 func main() {
 	var (
@@ -49,7 +30,7 @@ func main() {
 		flEvents  = flag.String("event-dir", env.String("MOROZ_EVENT_DIR", "/tmp/santa_events"), "Path to root directory where events will be stored.")
 		flVersion = flag.Bool("version", false, "print version information")
 		flDebug   = flag.Bool("debug", false, "log at a debug level by default.")
-		flUseTLS  = flag.Bool("use-tls", true, "I promise I terminated TLS elsewhere when changing this")
+		flUseTLS  = flag.Bool("use-tls", false, "starts the server with TLS listener.")
 	)
 	flag.Parse()
 
@@ -59,12 +40,12 @@ func main() {
 	}
 
 	if _, err := os.Stat(*flTLSCert); *flUseTLS && os.IsNotExist(err) {
-		fmt.Println(openSSLBash)
+		fmt.Printf("invalid TLS configuration: %s\n", err)
 		os.Exit(2)
 	}
 
 	if !validateConfigExists(*flConfigs) {
-		fmt.Println("you need to provide at least a 'global.toml' configuration file in the configs folder. See the configs folder in the git repo for an example")
+		fmt.Printf("you need to provide at least a 'global.toml' configuration file in the configs folder. See the configs folder in the git repo for an example.\n")
 		os.Exit(2)
 	}
 
